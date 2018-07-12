@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  minerprofitmanager:
+    image: ${DOCKER_REGISTRY}minerprofitmanager
+    build:
+      context: .
+      dockerfile: MinerProfitManager/Dockerfile
