@@ -1,17 +1,51 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
-    <UserSecretsId>7f8216ea-f883-46df-a6a3-0d675bb05e26</UserSecretsId>
+	<TargetFramework>netcoreapp2.1</TargetFramework>
+	<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>    <Authors>Hector Santana</Authors>
+	<Company>Santana Creations, LLC</Company>
+	<Description>Manager for crypto currency profit accounts to automatically trade currencies when their value is at the value desired by the user.</Description>
+	<Copyright>Santana Creations, LLC</Copyright>
+	<PackageLicenseUrl>https://santanacreations.com/</PackageLicenseUrl>
+	<PackageProjectUrl>https://github.com/SantanaCreations/MinerProfitManager</PackageProjectUrl>
+	<PackageIconUrl>https://avatars1.githubusercontent.com/u/27471666?s=200&amp;v=4</PackageIconUrl>
+	<RepositoryUrl>https://github.com/SantanaCreations/MinerProfitManager</RepositoryUrl>
+	<RepositoryType>public</RepositoryType>
+	<PackageTags>SantanaCreations SantanaCreationsLLC Crypto Mining Profit Manager Miner</PackageTags>
+	<PackageReleaseNotes>Initial Proof of concept.</PackageReleaseNotes>
+	<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	<UserSecretsId>7f8216ea-f883-46df-a6a3-0d675bb05e26</UserSecretsId>
+	<RuntimeIdentifiers>win-x64;osx.10.11-x64;ubuntu.16.04-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+	<_ContentIncludedByDefault Remove="wwwroot\css\app.min.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
+	<PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
+	<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.1" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Content Update="wwwroot/**/*.min.*" CopyToPublishDirectory="Always" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MsDeploySkipRules Include="CustomSkipFile">
+			<ObjectName>absolutePath</ObjectName>
+			<AbsolutePath>.+\.db</AbsolutePath>
+		</MsDeploySkipRules>
+	</ItemGroup>
+
+  <ItemGroup>
+	<ProjectReference Include="..\MinerProfitManager.App\MinerProfitManager.App.csproj" />
   </ItemGroup>
 
 </Project>
