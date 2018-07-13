@@ -1,3 +1,11 @@
+body {
+	width: 1536px;
+	margin: 0 auto;
+	padding: 0;
+	/*background-color: #5093d1;
+	background-color: rgba(80, 147, 209, 0.4);*/
+}
+
 .body-content {
 	width: 100%;
 }

@@ -12,6 +12,8 @@ using MinerProfitManager.App.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
+// ReSharper disable UnusedMember.Global
+
 namespace MinerProfitManager
 {
 	public class Startup

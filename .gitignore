@@ -262,3 +262,6 @@ __pycache__/
 
 # JS minified files
 *.min.*
+
+# ReSharper
+*.DotSettings
