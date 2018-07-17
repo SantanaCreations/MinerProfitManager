@@ -12,6 +12,9 @@ using MinerProfitManager.App.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
+using NLog.Extensions.Logging;
+using NLog.Web;
+
 // ReSharper disable UnusedMember.Global
 
 namespace MinerProfitManager
@@ -51,6 +54,11 @@ namespace MinerProfitManager
 			IHostingEnvironment env,
 			ILoggerFactory loggerFactory)
 		{
+			env.ConfigureNLog("log.config");
+
+			loggerFactory.AddNLog();
+			loggerFactory.AddConsole();
+
 			if (env.IsDevelopment())
 			{
 				loggerFactory.AddDebug();

@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using MinerProfitManager.App.Models;
+
 namespace MinerProfitManager.App.Data
 {
 	/// <summary>
@@ -15,5 +17,10 @@ namespace MinerProfitManager.App.Data
 			DbContextOptions<AppDbContext> options) : base(options)
 		{
 		}
+
+		/// <summary>
+		/// The collection of <see cref="Log"/> entities.
+		/// </summary>
+		public DbSet<Log> Log { get; set; }
 	}
 }

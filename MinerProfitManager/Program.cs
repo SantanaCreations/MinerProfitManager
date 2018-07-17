@@ -1,5 +1,13 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+using MinerProfitManager.App.Data;
+
+using NLog.Web;
 
 namespace MinerProfitManager
 {
@@ -7,11 +15,48 @@ namespace MinerProfitManager
 	{
 		public static void Main(string[] args)
 		{
-			CreateWebHostBuilder(args).Build().Run();
+			var host = BuildWebHost(args);
+
+			using (var scope = host.Services.CreateScope())
+			{
+				var services = scope.ServiceProvider;
+
+				try
+				{
+					var context = services.GetRequiredService<AppDbContext>();
+					var databaseExists = context.Database.EnsureCreatedAsync().Result;
+
+					if (!databaseExists)
+					{
+						var logger = services.GetRequiredService<ILogger<Program>>();
+						logger.LogError("Database could not be created.");
+					}
+				}
+				catch (Exception ex)
+				{
+					var logger = services.GetRequiredService<ILogger<Program>>();
+					logger.LogError(ex, "An error occurred seeding the DB.");
+				}
+				finally
+				{
+					// Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
+					NLog.LogManager.Shutdown();
+				}
+			}
+
+			host.Run();
 		}
 
-		private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+		private static IWebHost BuildWebHost(
+			string[] args) =>
 			WebHost.CreateDefaultBuilder(args)
-				.UseStartup<Startup>();
+				.UseStartup<Startup>()
+				.ConfigureLogging(logging =>
+				{
+					logging.ClearProviders();
+					logging.SetMinimumLevel(LogLevel.Warning);
+				})
+				.UseNLog()
+				.Build();
 	}
 }
