@@ -3,7 +3,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-using Newtonsoft.Json.Linq;
+using MinerProfitManager.App.Services.Coinbase;
+
+using Newtonsoft.Json;
 
 namespace MinerProfitManager.Controllers
 {
@@ -23,19 +25,26 @@ namespace MinerProfitManager.Controllers
 
 		// GET: hooks/<controller>
 		[HttpGet]
-		public JObject Get()
+		public StatusCodeResult Get()
 		{
-			_logger.LogInformation($"GET request was performed in {GetType().Name}");
-			return new JObject();
+			_logger.LogDebug("GET request was recieved.");
+			return ReturnStatusCode(HttpStatusCode.OK);
 		}
 
 		// POST hooks/<controller>
 		[HttpPost]
-		public JObject Post(
-			[FromBody] string notification)
+		public StatusCodeResult Post(
+			[FromBody] Notification notification)
 		{
-			_logger.LogInformation(notification);
-			return new JObject();
+			if (notification == null)
+			{
+				return ReturnStatusCode(HttpStatusCode.OK);
+			}
+
+			var notificationString = JsonConvert.SerializeObject(notification);
+			_logger.LogInformation(notificationString);
+
+			return ReturnStatusCode(HttpStatusCode.OK);
 		}
 
 		private StatusCodeResult ReturnStatusCode(

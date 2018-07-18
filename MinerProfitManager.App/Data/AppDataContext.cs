@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using MinerProfitManager.App.Models;
+using MinerProfitManager.App.Services.Coinbase;
 
 namespace MinerProfitManager.App.Data
 {
@@ -22,5 +23,10 @@ namespace MinerProfitManager.App.Data
 		/// The collection of <see cref="Log"/> entities.
 		/// </summary>
 		public DbSet<Log> Log { get; set; }
+
+		/// <summary>
+		/// The collection of <see cref="Notification"/> entities.
+		/// </summary>
+		public DbSet<Notification> Notification { get; set; }
 	}
 }
