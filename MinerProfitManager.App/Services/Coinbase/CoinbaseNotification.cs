@@ -2,12 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace MinerProfitManager.App.Services.Coinbase
 {
-	public class Notification
+	public class CoinbaseNotification
 	{
-		[Key]
 		[JsonProperty("id")]
 		public Guid Id { get; set; }
 
@@ -31,6 +31,7 @@ namespace MinerProfitManager.App.Services.Coinbase
 		public DateTime CreatedAt { get; set; }
 
 		[JsonProperty("resource")]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public ResourceType Resource { get; set; }
 
 		[JsonProperty("resource_path")]

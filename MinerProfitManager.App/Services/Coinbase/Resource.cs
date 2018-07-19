@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace MinerProfitManager.App.Services.Coinbase
 {
@@ -10,6 +11,7 @@ namespace MinerProfitManager.App.Services.Coinbase
 		public Guid Id { get; set; }
 
 		[JsonProperty("resource")]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public ResourceType Type { get; set; }
 
 		[JsonProperty("resource_path")]

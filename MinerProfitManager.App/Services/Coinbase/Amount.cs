@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace MinerProfitManager.App.Services.Coinbase
 {
@@ -8,6 +9,7 @@ namespace MinerProfitManager.App.Services.Coinbase
 		public decimal Value { get; set; }
 
 		[JsonProperty("currency")]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public CurrencyType Currency { get; set; }
 	}
 }

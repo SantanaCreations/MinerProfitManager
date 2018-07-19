@@ -54,7 +54,6 @@ namespace MinerProfitManager
 				.ConfigureLogging(logging =>
 				{
 					logging.ClearProviders();
-					logging.SetMinimumLevel(LogLevel.Warning);
 				})
 				.UseNLog()
 				.Build();

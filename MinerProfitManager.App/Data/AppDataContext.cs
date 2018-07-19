@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using MinerProfitManager.App.Models;
-using MinerProfitManager.App.Services.Coinbase;
 
 namespace MinerProfitManager.App.Data
 {
@@ -15,7 +14,7 @@ namespace MinerProfitManager.App.Data
 		/// </summary>
 		/// <param name="options">The options provided to the context for configuration.</param>
 		public AppDbContext(
-			DbContextOptions<AppDbContext> options) : base(options)
+			DbContextOptions options) : base(options)
 		{
 		}
 
@@ -25,8 +24,8 @@ namespace MinerProfitManager.App.Data
 		public DbSet<Log> Log { get; set; }
 
 		/// <summary>
-		/// The collection of <see cref="Notification"/> entities.
+		/// The collection of <see cref="ServiceNotification"/> entities.
 		/// </summary>
-		public DbSet<Notification> Notification { get; set; }
+		public DbSet<ServiceNotification> ServiceNotification { get; set; }
 	}
 }

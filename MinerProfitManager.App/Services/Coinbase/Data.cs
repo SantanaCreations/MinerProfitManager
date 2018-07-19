@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace MinerProfitManager.App.Services.Coinbase
 {
 	public class Data
 	{
-		[Key]
 		[JsonProperty("id")]
 		public Guid Id { get; set; }
 
 		[JsonProperty("status")]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public ResourceStatus Status { get; set; }
 
 		[JsonProperty("payment_method")]
@@ -33,6 +34,7 @@ namespace MinerProfitManager.App.Services.Coinbase
 		public DateTime UpdatedAt { get; set; }
 
 		[JsonProperty("resource")]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public ResourceType Resource { get; set; }
 
 		[JsonProperty("resource_path")]
