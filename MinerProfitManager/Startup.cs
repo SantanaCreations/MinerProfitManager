@@ -1,5 +1,3 @@
-using System;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using MinerProfitManager.App.Data;
 using MinerProfitManager.App.Models;
 using MinerProfitManager.App.Services;
-using MinerProfitManager.App.Services.Coinbase;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
