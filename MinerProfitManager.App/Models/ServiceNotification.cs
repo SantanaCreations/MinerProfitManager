@@ -15,6 +15,7 @@ namespace MinerProfitManager.App.Models
 
 		public string Type { get; set; }
 
+		[DataType(DataType.Text)]
 		public ResourceType Resource { get; set; }
 
 		public string AccountId { get; set; }
