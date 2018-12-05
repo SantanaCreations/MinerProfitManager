@@ -1,4 +1,5 @@
-﻿using MinerProfitManager.App.Services.Coinbase;
+﻿using MinerProfitManager.App.Models;
+using MinerProfitManager.App.Services.Coinbase;
 
 using Xunit;
 
@@ -10,6 +11,13 @@ namespace MinerProfitManager.App.Test.Services.Coinbase
 
 		public CoinbaseApiTests()
 		{
+			AppSettings.WalletSettings = new WalletSettings
+			{
+				Endpoint = "https://api.coinbase.com/v2/",
+				Token = "12345",
+				Secret = "Secret"
+			};
+
 			_api = new CoinbaseApi(AppSettings.WalletSettings);
 		}
 

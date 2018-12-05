@@ -34,7 +34,7 @@ namespace MinerProfitManager.App.Services.Coinbase
 			_endpoint = walletSettings.Endpoint;
 			_token = walletSettings.Token;
 
-			_encoding = Encoding.UTF8;
+			_encoding = Encoding.ASCII;
 			_secretBytes = _encoding.GetBytes(walletSettings.Secret);
 			_applicationName = Assembly.GetExecutingAssembly().GetName().Name;
 		}
