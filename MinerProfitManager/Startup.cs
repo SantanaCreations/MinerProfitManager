@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 using MinerProfitManager.App.Data;
 using MinerProfitManager.App.Models;
@@ -12,9 +12,6 @@ using MinerProfitManager.App.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-
-using NLog.Extensions.Logging;
-using NLog.Web;
 
 // ReSharper disable UnusedMember.Global
 
@@ -41,7 +38,8 @@ namespace MinerProfitManager
 				options => options.UseSqlite(Configuration.GetConnectionString(CONNECTION_STRING_NAME)));
 
 			// Add framework services
-			services.AddMvc().AddJsonOptions(
+			services.AddRazorPages();
+			services.AddControllers().AddNewtonsoftJson(
 				options =>
 				{
 					options.SerializerSettings.ContractResolver
@@ -62,33 +60,33 @@ namespace MinerProfitManager
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(
-			IApplicationBuilder app,
-			IHostingEnvironment env,
-			ILoggerFactory loggerFactory)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			NLog.GlobalDiagnosticsContext.Set(
 				"DefaultConnection",
 				Configuration.GetConnectionString(CONNECTION_STRING_NAME));
-			env.ConfigureNLog("log.config");
-
-			loggerFactory.AddNLog();
 
 			if (env.IsDevelopment())
 			{
-				loggerFactory.AddConsole();
-				loggerFactory.AddDebug();
 				app.UseDeveloperExceptionPage();
-				app.UseBrowserLink();
 			}
 			else
 			{
 				app.UseExceptionHandler("/Error");
+				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
 
+			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-			app.UseMvcWithDefaultRoute();
+			app.UseRouting();
+			app.UseAuthorization();
+
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllers();
+				endpoints.MapRazorPages();
+			});
 		}
 	}
 }

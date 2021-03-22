@@ -1,8 +1,7 @@
 ﻿using System;
-
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 using MinerProfitManager.App.Data;
@@ -11,11 +10,11 @@ using NLog.Web;
 
 namespace MinerProfitManager
 {
-	public class Program
+    public class Program
 	{
 		public static void Main(string[] args)
 		{
-			var host = BuildWebHost(args);
+			var host = CreateHostBuilder(args).Build();
 
 			using (var scope = host.Services.CreateScope())
 			{
@@ -47,15 +46,17 @@ namespace MinerProfitManager
 			host.Run();
 		}
 
-		private static IWebHost BuildWebHost(
+		public static IHostBuilder CreateHostBuilder(
 			string[] args) =>
-			WebHost.CreateDefaultBuilder(args)
-				.UseStartup<Startup>()
+			Host.CreateDefaultBuilder(args)
+				.ConfigureWebHostDefaults(webBuilder =>
+				{
+					webBuilder.UseStartup<Startup>();
+				})
 				.ConfigureLogging(logging =>
 				{
 					logging.ClearProviders();
 				})
-				.UseNLog()
-				.Build();
+				.UseNLog();
 	}
 }
