@@ -88,7 +88,6 @@ namespace MinerProfitManager.App.Services.Coinbase
 				var messageBytes = _encoding.GetBytes(messageString);
 				var hashBytes = hasher.ComputeHash(messageBytes);
 				return _encoding.GetString(hashBytes);
-
 			}
 		}
 	}

@@ -10,7 +10,7 @@ using NLog.Web;
 
 namespace MinerProfitManager
 {
-    public class Program
+	public class Program
 	{
 		public static void Main(string[] args)
 		{
