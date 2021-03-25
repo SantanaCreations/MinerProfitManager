@@ -1,19 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFramework>netcoreapp3.1</TargetFramework>
+	<TargetFramework>net5.0</TargetFramework>
+	<UserSecretsId>7f8216ea-f883-46df-a6a3-0d675bb05e26</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
 	<PackageReference Include="Coinbase" Version="6.0.1" />
 	<PackageReference Include="Coinbase.Pro" Version="4.1.2" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.13" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.13">
+	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.13" />
-	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.13" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.4" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
 	<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	<PackageReference Include="NLog" Version="4.7.9" />
 	<PackageReference Include="RestSharp" Version="106.11.7" />

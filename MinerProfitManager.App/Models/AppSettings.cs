@@ -5,6 +5,8 @@
 	/// </summary>
 	public class AppSettings
 	{
+		public const string SectionName = "App";
+
 		/// <summary>
 		/// Whether or not the application is on debug mode.
 		/// </summary>

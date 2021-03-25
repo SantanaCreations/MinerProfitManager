@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-	<TargetFramework>netcoreapp3.1</TargetFramework>
+	<TargetFramework>net5.0</TargetFramework>
 	<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
-  <Authors>Hector Santana</Authors>
+	<Authors>Hector Santana</Authors>
 	<Company>Santana Creations, LLC</Company>
 	<Description>Manager for crypto currency profit accounts to automatically trade currencies when their value is at the value desired by the user.</Description>
 	<Copyright>2021 © Santana Creations, LLC</Copyright>
@@ -23,13 +23,13 @@
 	<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
 	<PackageReference Include="Coinbase" Version="6.0.1" />
 	<PackageReference Include="Coinbase.Pro" Version="4.1.2" />
-	<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.13" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.13">
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.4" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.13" />
-	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.13" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.4" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
 	<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	<PackageReference Include="NLog" Version="4.7.9" />
 	<PackageReference Include="NLog.Web.AspNetCore" Version="4.11.0" />

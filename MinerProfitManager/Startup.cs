@@ -52,7 +52,7 @@ namespace MinerProfitManager
 				});
 
 			// Register application services.
-			services.AddSingleton(Configuration.GetSection("App").Get<AppSettings>());
+			services.AddSingleton(Configuration.GetSection(AppSettings.SectionName).Get<AppSettings>());
 
 			// Register application services.
 			services.AddScoped<IServiceNotificationRepository, ServiceNotificationRepository>();

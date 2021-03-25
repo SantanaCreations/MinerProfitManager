@@ -25,9 +25,11 @@ namespace MinerProfitManager.App.Test
 		private static AppSettings GetAppSettings()
 		{
 			return new ConfigurationBuilder()
-				//.AddUserSecrets<AppSettings>()
 				.AddJsonFile(APP_SETTINGS)
-				.Build().Get<AppSettings>();
+				.AddUserSecrets<AppSettings>()
+				.Build()
+				.GetSection(AppSettings.SectionName)
+				.Get<AppSettings>();
 		}
 	}
 }
